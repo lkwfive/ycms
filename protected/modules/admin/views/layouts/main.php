@@ -1,0 +1,63 @@
+<?php /* @var $this Controller */ ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="language" content="en" />
+	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+</head>
+
+<body>
+
+<?php $this->widget('bootstrap.widgets.TbNavbar',array(
+	'type'=>'inverse',
+	'collapse'=>true,
+    'items'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbMenu',
+            'items'=>array(
+                array('label'=>'系统管理', 'url'=>array('/admin/default/index')),
+                array('label'=>'网站设置',
+                    'items' => array(
+                        array('label'=>'整站设置', 'url'=>array('/admin/setting/config')),
+                        array('label'=>'首页设置', 'url'=>array('/admin/setting/index')),
+                    ),
+                    'active'=>Yii::app()->controller->id=='links'
+                ),
+                array('label'=>'文章', 'url'=>array('/admin/article/admin')),
+                array('label'=>'分类', 'url'=>array('/admin/category/index')),
+                array('label'=>'系统',
+                    'items' => array(
+                      array('label' => '数据库管理', 'url' => array('/admin/backup/index')),
+                      array('label' => '省市区数据', 'url' => array('/admin/provinces/index')),
+                    ),
+                    'active'=>Yii::app()->controller->id=='links'
+                ),
+            ),
+        ),
+        array(
+            'class'=>'bootstrap.widgets.TbMenu',
+            'htmlOptions'=>array('class'=>'pull-right'),
+            'items'=>array(
+                array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+                array('label'=>'退出 ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+            ),
+        ),
+    ),
+)); ?>
+
+<div class="container" id="page" style="margin-top: 50px;">
+	<?php echo $content; ?>
+</div><!-- page -->
+
+<footer class="footer">
+	Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
+    All Rights Reserved.<br/>
+    <?php echo Yii::powered(); ?>
+</footer><!-- footer -->
+<style type="text/css">
+    .footer{color: #999;text-align: center;padding: 30px 0;margin-top: 70px;border-top: 1px solid #e5e5e5;background-color: #f5f5f5;}
+</style>
+
+</body>
+</html>
