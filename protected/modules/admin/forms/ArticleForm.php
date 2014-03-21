@@ -1,7 +1,8 @@
 <?php
 class ArticleForm extends CFormModel
 {
-	public $id;
+	// public $id;
+	public $alias;
 	public $category_id;
 	public $model_name;
 	public $title;
@@ -41,6 +42,7 @@ class ArticleForm extends CFormModel
 			array('picture', 'length', 'max'=>32),
 			array('content', 'ext.validator.XssClean', 'mode'=>'purify'),
 			array('alias','checkAliadExists'),
+			array('is_auto_summary', 'boolean'),
 		);
 	}
 
@@ -85,7 +87,6 @@ class ArticleForm extends CFormModel
 
 	public function save()
 	{
-		// H::printR($this->attributes);
 		if (empty($this->article))
 			$this->article = new Article;
 		if (empty($this->article->Profile))
@@ -93,17 +94,19 @@ class ArticleForm extends CFormModel
 
 		$this->article->attributes = $this->attributes;
 		$this->article->Profile->content = $this->content;
+		//自动提取内容至摘要
+		if($this->is_auto_summary)
+			$this->article->summary = H::substr($this->content, 85);
 		//开启事务
 		$transaction = Yii::app()->db->beginTransaction();
         try{
         	//保存文章
 			if(!$this->article->save()){
-				H::printR($this->article->errors);
 				return false;
 			}
 			$this->article->Profile->article_id = $this->article->id;
 			//保存文章内容
-			if(!$this->article->Profile)
+			if(!$this->article->Profile->save())
 				return false;
 			//提交事务
 			$transaction->commit();

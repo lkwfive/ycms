@@ -47,7 +47,7 @@ class CategoryController extends AdminBaseController
 
         if (isset($_POST['Category'])) {
             $model->attributes = $_POST['Category'];
-            $parent_node = $_POST['Category']['id'];
+            $parent_node = isset($_POST['Category']['id']) ? $_POST['Category']['id'] : 0;
             if ($parent_node != 0) {
                 $node = Category::model()->findByPk($parent_node);
                 $model->appendTo($node);

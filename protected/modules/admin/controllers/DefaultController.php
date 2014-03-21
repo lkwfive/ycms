@@ -8,12 +8,7 @@ class DefaultController extends AdminBaseController
 	 */
 	public $menu = array(
 	    array('label' => '站点信息', 'icon' => 'th-large', 'url' => array('/admin/default/siteinfo')),
-	 //    array('label' => '访问控制', 'icon' => 'minus-sign', 'url' => array('/admin/default/access')),
-	 //    array('label' => '注册设置', 'icon' => 'user', 'url' => array('/admin/default/reg')),
-		// array('label' => '附件设置', 'icon' => 'file', 'url' => array('/admin/default/attach')),
-		// array('label' => '缩略图设置', 'icon' => 'picture', 'url' => array('/admin/default/thumbnails')),
 	    array('label' => '水印设置', 'icon' => 'tint', 'url' => array('/admin/default/watermark')),
-	 //    array('label' => '邮件设置', 'icon' => 'envelope', 'url' => array('/admin/default/email')),
 	);
 
 	/**

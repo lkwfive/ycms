@@ -14,7 +14,7 @@ $relatively_path = DIRECTORY_SEPARATOR .'public'. DIRECTORY_SEPARATOR .'upload' 
 
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'lkwcms',
+	'name'=>'ycms',
 	'theme'=>'classic',
 	'language' => 'zh_cn',
 	'timeZone' => 'Asia/Shanghai',
@@ -74,7 +74,7 @@ return array(
 		),
 		// uncomment the following to use a MySQL database
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=lkwcms',
+			'connectionString' => 'mysql:host=localhost;dbname=ycms',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',
@@ -158,7 +158,7 @@ return array(
         //系统运行时间
         'now' => time(),
         //key
-        'key' => '21232f297a57a5a743894a0e4a801fc3',
+        'key' => 'a2a8a4818b53dc32d77024592d40f744',
 	),
 	// 'defaultController' => 'default',
 );

@@ -79,11 +79,15 @@ class ArticleController extends AdminBaseController
 		$article=$this->loadModel($id);
 		$model=new ArticleForm;
 		$model->attributes = $article->attributes;
-		if(isset($_POST['Article']))
-		{
-			$model->attributes=$_POST['Article'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+		$model->attributes = $article->Profile->attributes;
+		$model->article = $article;
+		if(isset($_POST['ArticleForm']))
+		{	
+			$model->attributes=$_POST['ArticleForm'];
+			if($model->save()) {
+				Yii::app()->user->setFlash('success', "修改成功！");
+				$this->refresh();
+			}
 		}
 
 		$this->render('update',array(

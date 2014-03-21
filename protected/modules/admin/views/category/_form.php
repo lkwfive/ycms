@@ -7,8 +7,7 @@
 
 <?php echo $form->dropDownListRow($model,'id', Category::getDropDownListData(), array('encode'=>false)); ?>
 <?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>255)); ?>
-<?php echo $form->dropDownListRow($model,'model',Post::$model); ?>
-<?php echo $form->dropDownListRow($model,'view',Post::$view_map); ?>
+<?php echo $form->dropDownListRow($model,'template',Category::$templates); ?>
 <?php echo $form->toggleButtonRow($model, 'status'); ?>
 
 <div class="form-actions">
@@ -18,5 +17,4 @@
 			'label'=>$model->isNewRecord ? '创建' : '保存',
 		)); ?>
 </div>
-
 <?php $this->endWidget(); ?>

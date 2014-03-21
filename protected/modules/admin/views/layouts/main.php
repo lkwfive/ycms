@@ -17,13 +17,6 @@
             'class'=>'bootstrap.widgets.TbMenu',
             'items'=>array(
                 array('label'=>'系统管理', 'url'=>array('/admin/default/index')),
-                array('label'=>'网站设置',
-                    'items' => array(
-                        array('label'=>'整站设置', 'url'=>array('/admin/setting/config')),
-                        array('label'=>'首页设置', 'url'=>array('/admin/setting/index')),
-                    ),
-                    'active'=>Yii::app()->controller->id=='links'
-                ),
                 array('label'=>'文章', 'url'=>array('/admin/article/admin')),
                 array('label'=>'分类', 'url'=>array('/admin/category/index')),
                 array('label'=>'系统',

@@ -11,12 +11,20 @@ Yii::import('ext.seo.components.SeoRecordBehavior');
  * @property string $rgt
  * @property integer $level
  * @property string $name
- * @property string $model
- * @property string $view
+ * @property string $model_name
+ * @property string $template
  * @property integer $status
  */
 class Category extends CActiveRecord
 {
+	const
+		TEMPLATE_ARTICLE = 'article'
+	;
+
+	public static $templates = array(
+		self::TEMPLATE_ARTICLE => 'article',
+	);
+	
 	public function behaviors() {
 		$behaviros = parent::behaviors();
         return CMap::mergeArray($behaviros,array(
@@ -34,14 +42,6 @@ class Category extends CActiveRecord
         	),
         ));
     }
-
-    public function beforeSave()
-	{
-		if(parent::beforeSave()) {
-			$this->view = Post::$view_map[$this->model];
-			return true;
-		}
-	}
 
 	public function afterSave()
 	{
@@ -68,14 +68,14 @@ class Category extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, model, status', 'required'),
+			array('name, template, status', 'required'),
 			array('level, status', 'numerical', 'integerOnly'=>true),
-			array('root, lft, rgt, model', 'length', 'max'=>10),
+			array('root, lft, rgt', 'length', 'max'=>10),
 			array('name', 'length', 'max'=>255),
-			array('view', 'length', 'max'=>30),
+			array('model_name, template', 'length', 'max'=>30),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, root, lft, rgt, level, name, model, view, status', 'safe', 'on'=>'search'),
+			array('id, root, lft, rgt, level, name, model_name, template, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -87,7 +87,7 @@ class Category extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'Post'=>array(self::HAS_MANY,'Post','category_id'),
+			'Article'=>array(self::HAS_MANY,'Article','category_id'),
 		);
 	}
 
@@ -102,9 +102,9 @@ class Category extends CActiveRecord
 			'lft' => 'Lft',
 			'rgt' => 'Rgt',
 			'level' => 'Level',
-			'name' => '名称',
-			'model' => '所属模型',
-			'view' => '视图',
+			'name' => 'Name',
+			'model_name' => '所属模型名称',
+			'template' => '指定视图',
 			'status' => '是否显示到导航',
 		);
 	}
@@ -133,8 +133,8 @@ class Category extends CActiveRecord
 		$criteria->compare('rgt',$this->rgt,true);
 		$criteria->compare('level',$this->level);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('model',$this->model,true);
-		$criteria->compare('view',$this->view,true);
+		$criteria->compare('model_name',$this->model_name,true);
+		$criteria->compare('template',$this->template,true);
 		$criteria->compare('status',$this->status);
 
 		return new CActiveDataProvider($this, array(
@@ -153,10 +153,15 @@ class Category extends CActiveRecord
 		return parent::model($className);
 	}
 
-	public static function getCategories()
+	/**
+	 * 获取所有分类(有缓存)
+	 * @param  boolean $cache [默认获取]
+	 * @return [array]         [分类对象]
+	 */
+	public static function getCategories($cache=true)
 	{
 		$categories=Yii::app()->cache->get('Categories');
-		if($categories===false) {
+		if($categories===false || $cache===false) {
 			$criteria = new CDbCriteria;
 			$criteria->order = "lft";
 			$categories = self::model()->findAll($criteria);
