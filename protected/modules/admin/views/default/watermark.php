@@ -27,7 +27,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 		<div class="controls">
 			<p><?php $this->widget('bootstrap.widgets.TbButton',
 				    array(
-				        'label' => '预览水印效果',
+				        'label' => '预览水印效果（保存之后才有效果）',
 				        'type' => 'link',
 				        'url' => $this->createUrl('',array('show'=>true, 'random'=>time())),
 				        'htmlOptions' => array('target'=>'_blank'),
