@@ -78,7 +78,7 @@ class DefaultController extends AdminBaseController
 
 	private function _showWatermark(SettingWatermarkForm $options)
 	{
-		$image = Yii::app()->image->create(Yii::app()->params['upload_path'].'test.png');
+		$image = Yii::app()->image->create(Yii::app()->params['upload_path'].'test.jpg');
 		if($options->closed)
 			$image->createWatermark(Yii::app()->params['upload_path'].'watermark.png', $options->proportion, $options->right_margin, $options->bottom_margin);
 		$image->show();
