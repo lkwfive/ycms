@@ -1,14 +1,4 @@
-<?php /* @var $this Controller */ ?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="language" content="en" />
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-</head>
-
-<body>
-
+<?php $this->beginContent('/layouts/single'); ?>
 <?php $this->widget('bootstrap.widgets.TbNavbar',array(
 	'type'=>'inverse',
 	'collapse'=>true,
@@ -51,6 +41,4 @@
 <style type="text/css">
     .footer{color: #999;text-align: center;padding: 30px 0;margin-top: 70px;border-top: 1px solid #e5e5e5;background-color: #f5f5f5;}
 </style>
-
-</body>
-</html>
+<?php $this->endContent(); ?>

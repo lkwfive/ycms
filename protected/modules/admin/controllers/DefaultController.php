@@ -34,6 +34,9 @@ class DefaultController extends AdminBaseController
 	 */
 	public function actionIndex()
 	{
+		if(Yii::app()->user->id != 1)
+			$this->redirect('/admin/default/login');
+
 		$this->layout='/layouts/column2';
 		$this->render('index');
 	}
@@ -91,7 +94,11 @@ class DefaultController extends AdminBaseController
 	 */
 	public function actionLogin($key='')
 	{
-		$layout='/layouts/column2';
+		//已登录则跳转到后台首页
+		if(Yii::app()->user->id == 1)
+			$this->redirect('/admin/');
+
+		$this->layout='/layouts/single';
 
 		$model=new AdminLoginForm;
 
@@ -105,6 +112,6 @@ class DefaultController extends AdminBaseController
 				$this->redirect('/admin/');
 		}
 		// display the login form
-		$this->renderPartial('login',array('model'=>$model));
+		$this->render('login',array('model'=>$model));
 	}
 }

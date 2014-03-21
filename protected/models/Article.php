@@ -186,7 +186,6 @@ class Article extends BaseModel
 		$criteria->compare('tags',$this->tags,true);
 		$criteria->compare('user_id',$this->user_id,true);
 		$criteria->compare('update_user_id',$this->update_user_id,true);
-		// if(empty($this->status) )
 		$criteria->compare('status',$this->status);
 		$criteria->compare('template',$this->template,true);
 		$criteria->compare('power',$this->power);
@@ -209,5 +208,13 @@ class Article extends BaseModel
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public static function getList($page = 1)
+	{
+		$criteria = new CDbCriteria;
+		$criteria->compare('status',self::STATUS_SHOW);
+		$criteria->order = "power DESC";
+		return self::model()->findAll($criteria);
 	}
 }
