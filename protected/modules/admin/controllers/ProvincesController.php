@@ -8,24 +8,6 @@ class ProvincesController extends AdminBaseController
 		array('label'=>'管理', 'icon'=>'align-justify', 'url'=>array('index')),
 		array('label'=>'创建', 'icon'=>'plus', 'url'=>array('create')),
 	);
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('view', 'create', 'update', 'delete', 'move', 'admin', 'index'),
-				'users'=>array('*'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
-	}
-	
 
 	/**
 	* Displays a particular model.

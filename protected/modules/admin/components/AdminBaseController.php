@@ -22,7 +22,6 @@ class AdminBaseController extends Controller
 	{
 		return array(
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','manage','index','view','create','update', 'image', 'file', 'imagelist'),
 				'users'=>array('admin'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
