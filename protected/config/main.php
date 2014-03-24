@@ -56,7 +56,7 @@ return array(
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
-			'loginUrl'=>array('site/login'),
+			'loginUrl'=>array('/admin/default/login'),
 		),
 		// uncomment the following to enable URLs in path-format
 		'urlManager'=>array(
@@ -66,8 +66,6 @@ return array(
 				//管理后台
 				'/'=>'site/index',
 				'/site/<action:logout>'=>'site/<action>',
-				'<controller:\w+>/<id:\d+>/<page:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<alias:\w+>'=>'<controller>/post',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),

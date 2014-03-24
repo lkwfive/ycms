@@ -21,16 +21,13 @@ class AdminBaseController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+			array('allow', // allow admin user to perform all actions
 				'users'=>array('admin'),
 			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+			array('allow', // allow all user to perform login actions
 				'actions'=>array('login'),
-				'users'=>array('*'),
 			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
+			array('deny'),
 		);
 	}
 }
