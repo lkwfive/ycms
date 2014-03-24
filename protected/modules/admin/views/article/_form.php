@@ -34,6 +34,13 @@
         )
     );?>
 
+    <?php if ($model->picture):?>
+		<div class="control-group ">
+			<label class="control-label" for="link_img">预览</label>
+			<div class="controls"><?php echo CHtml::image(UploadFile::getImageUrl($model->picture),'',array('width'=>200));?></div>
+		</div>;
+	<?php endif; ?>
+
 	<?php echo $form->fileFieldRow($model,'image_file'); ?>
 
 	<?php echo $form->textFieldRow($model,'source',array('class'=>'span5','maxlength'=>100)); ?>

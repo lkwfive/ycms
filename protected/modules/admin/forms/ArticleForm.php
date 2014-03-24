@@ -97,6 +97,9 @@ class ArticleForm extends CFormModel
 		//自动提取内容至摘要
 		if($this->is_auto_summary)
 			$this->article->summary = H::substr($this->content, 85);
+		//保存图片
+		if($this->image_file)
+			$this->article->picture = UploadFile::saveImage($this->image_file);
 		//开启事务
 		$transaction = Yii::app()->db->beginTransaction();
         try{

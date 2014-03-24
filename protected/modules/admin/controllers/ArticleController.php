@@ -59,6 +59,7 @@ class ArticleController extends AdminBaseController
 		if(isset($_POST['ArticleForm']))
 		{	
 			$model->attributes=$_POST['ArticleForm'];
+			$model->image_file=CUploadedFile::getInstance($model, 'image_file');
 			if($model->save()) {
 				Yii::app()->user->setFlash('success', "修改成功！");
 				$this->refresh();

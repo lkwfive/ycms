@@ -12,8 +12,11 @@ class UploadFile
 	public static function saveImage(CUploadedFile $file)
 	{
         $image = Yii::app()->image->create($file->getTempName());
-        $file_name = md5_file($file->getTempName()).'.jpg';
-        $file_path = Yii::app()->params['upload_image_path'].$file_name;
+        $file_name = md5_file($file->getTempName());
+        $file_path = Yii::app()->params['upload_image_path'].$file_name.'.jpg';
+        $options=new SettingWatermarkForm;
+        if($options->closed)
+        	$image->createWatermark(Yii::app()->params['upload_path'].'watermark.png', $options->proportion, $options->right_margin, $options->bottom_margin);
         if($image->save($file_path, 'jpg'))
         	return $file_name;
         return null;
@@ -56,7 +59,7 @@ class UploadFile
 	{	
 		if(empty($image_name))
 			return '/upload/404.jpg';
-		return self::$image_url_path.$image_name;
+		return self::$image_url_path.$image_name.'.jpg';
 	}
 
 	/**
