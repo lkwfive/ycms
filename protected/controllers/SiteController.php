@@ -33,6 +33,14 @@ class SiteController extends Controller
 		));
 	}
 
+	public function actionV($alias)
+	{
+		$model = Article::model()->with('Profile')->find('alias=?',array($alias));
+		$this->render('view', array(
+			'model'=>$model,
+		));
+	}
+
 	/**
 	 * This is the action to handle external exceptions.
 	 */

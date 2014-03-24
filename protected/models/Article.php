@@ -65,7 +65,7 @@ class Article extends BaseModel
         return CMap::mergeArray($behaviros,array(
         	'seo'=>array(
         		'class'=>'ext.seo.components.SeoRecordBehavior',
-        		'route'=>'site/post',
+        		'route'=>'site/v',
         		'params'=>array('alias'=>$this->alias),
         	),
         ));

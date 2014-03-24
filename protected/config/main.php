@@ -65,6 +65,7 @@ return array(
 			'rules'=>array(
 				//管理后台
 				'/'=>'site/index',
+				'v/<alias:\w+>' => 'site/v',
 				'/site/<action:logout>'=>'site/<action>',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
