@@ -144,13 +144,13 @@ return array(
         //上传行程文档大小
         'upload_doc_size' => (1024 * 1024 * 5),
         //项目路径
-        'project_path' => $projectPath.'/public',
+        'project_path' => $projectPath.DIRECTORY_SEPARATOR.'public',
         //上传路径
         'upload_path' => $projectPath.$relatively_path,
         //图片上传路径
-        'upload_image_path' => $projectPath.$relatively_path.'images/',
+        'upload_image_path' => $projectPath.$relatively_path.'images'.DIRECTORY_SEPARATOR,
         //文件上传路径
-        'upload_file_path' => $projectPath.$relatively_path.'files/',
+        'upload_file_path' => $projectPath.$relatively_path.'files'.DIRECTORY_SEPARATOR,
         //分页
         'page_size' => 10,
         //系统运行时间
