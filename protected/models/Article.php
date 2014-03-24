@@ -217,4 +217,9 @@ class Article extends BaseModel
 		$criteria->order = "power DESC";
 		return self::model()->findAll($criteria);
 	}
+
+	public function getImg()
+	{
+		return UploadFile::getImageUrl($this->picture);
+	}
 }
