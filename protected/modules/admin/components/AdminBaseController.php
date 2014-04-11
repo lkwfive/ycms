@@ -22,7 +22,7 @@ class AdminBaseController extends Controller
 	{
 		return array(
 			array('allow', // allow admin user to perform all actions
-				'users'=>array('admin'),
+				'users'=>array('admin', 'system'),
 			),
 			array('allow', // allow all user to perform login actions
 				'actions'=>array('login'),

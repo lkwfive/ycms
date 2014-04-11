@@ -7,7 +7,7 @@
             'class'=>'bootstrap.widgets.TbMenu',
             'items'=>array(
                 array('label'=>'系统管理', 'url'=>array('/admin/default/index')),
-                array('label'=>'文章', 'url'=>array('/admin/article/admin')),
+                array('label'=>'文章', 'url'=>array('/admin/article/index')),
                 array('label'=>'分类', 'url'=>array('/admin/category/index')),
                 array('label'=>'系统',
                     'items' => array(

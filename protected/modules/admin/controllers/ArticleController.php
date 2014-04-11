@@ -1,12 +1,14 @@
 <?php
-
+/**
+ * 文章
+ */
 class ArticleController extends AdminBaseController
 {
 	public function init()
 	{
 		parent::init();
 		$this->menu=array(
-			array('label'=>'管理', 'icon'=>'align-justify', 'url'=>array('/admin/article/admin')),
+			array('label'=>'管理', 'icon'=>'align-justify', 'url'=>array('/admin/article/index')),
 			array('label'=>'创建', 'icon'=>'plus', 'url'=>array('/admin/article/create')),
 		);
 	}
@@ -96,23 +98,12 @@ class ArticleController extends AdminBaseController
 	*/
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Article');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
-
-	/**
-	* Manages all models.
-	*/
-	public function actionAdmin()
-	{
 		$model=new Article('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Article']))
 			$model->attributes=$_GET['Article'];
 
-		$this->render('admin',array(
+		$this->render('index',array(
 			'model'=>$model,
 		));
 	}

@@ -104,6 +104,22 @@ return array(
         'input' => array(
             'class' => 'CmsInput',
         ),
+        //request
+        'request' => array(
+        	'class' => 'CmsRequest',
+        	'enableCsrfValidation' => true,
+        	'csrfTokenName' => 'ycms_csrf_token',
+        	'csrfCookie' => array(
+                'httpOnly'=> true,
+        	),
+        ),
+        //session
+        'session' => array(
+        	'sessionName' => 'ycms_session',
+        	'cookieParams' => array(
+        		'httponly' => true,
+        	),
+        ),
         //缓存
         'cache' => array(
             'class' => 'system.caching.CFileCache',

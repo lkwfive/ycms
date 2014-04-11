@@ -18,7 +18,7 @@
         <?php 
             $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
                 'homeLink'=>false,
-                'links'=>array_merge(array('系统管理'=>array('index')),$this->breadcrumbs),
+                'links'=>array_merge(array('系统管理'=>array('/admin/default')),$this->breadcrumbs),
             ));
         ?><!-- breadcrumbs -->
         <div id="content">

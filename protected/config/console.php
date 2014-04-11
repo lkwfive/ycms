@@ -3,7 +3,7 @@
 // Any writable CConsoleApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'lazymao',
+	'name'=>'ycms',
 	'language' => 'zh_cn',
 	'timeZone' => 'Asia/Shanghai',
 	// preloading 'log' component
