@@ -42,30 +42,6 @@ class SiteController extends Controller
 		));
 	}
 
-	public function actionE()
-	{
-		// $mail = new YiiMailer();
-		// $mail->setFrom('523011445@qq.com', 'John Doe');
-		// $mail->setTo('2703295@qq.com');
-		// $mail->setSubject('Mail subject');
-		// $mail->setBody('Simple message');
-		$mail = new YiiMailer();
-		$mail->clearLayout();
-        $mail->setFrom('523011445@qq.com', 'John Doe');
-        $mail->setTo('2703295@qq.com');
-        $mail->setSubject('Mail subject');
-        $mail->setBody('Simple message');
-		$mail->IsSMTP();
-        $mail->Host = "smtp.exmail.qq.com";
-        $mail->Port = 25;
-        $mail->SMTPAuth = true;
-        $mail->Username = "523011445@qq.com";
-        $mail->Password = "likunwu";
-		$a = $mail->send();
-		var_dump($a);
-		var_dump($mail->getError());
-	}
-
 	/**
 	 * This is the action to handle external exceptions.
 	 */
