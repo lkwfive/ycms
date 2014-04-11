@@ -1,5 +1,5 @@
 <?php
-
+Yii::import('ext.YiiMailer.YiiMailer');
 class DefaultController extends AdminBaseController
 {
 	/**
@@ -9,6 +9,7 @@ class DefaultController extends AdminBaseController
 	public $menu = array(
 	    array('label' => '站点信息', 'icon' => 'th-large', 'url' => array('/admin/default/siteinfo')),
 	    array('label' => '水印设置', 'icon' => 'tint', 'url' => array('/admin/default/watermark')),
+	    array('label' => '邮箱设置', 'icon' => 'envelope', 'url' => array('/admin/default/mail')),
 	);
 
 	/**
@@ -66,11 +67,40 @@ class DefaultController extends AdminBaseController
 		die;
 	}
 
-	public function actionThumbnails()
+	public function actionMail()
 	{
-		$this->render('watermark',array('model'=>$model));
-	}
+		$model = new SettingMailForm;
 
+		/*check*/
+		if(Yii::app()->request->isAjaxRequest && isset($_POST['SettingMailForm'])){
+			$model->attributes = $_POST['SettingMailForm'];
+			$mail = new YiiMailer();
+			$mail->clearLayout();
+			$mail->IsSMTP();
+	        $mail->SMTPAuth = true;
+
+	        $mail->setFrom($model->test_form);
+	        $mail->setTo($model->test_to);
+	        $mail->setSubject($_POST['SettingMailForm']['_subject']);
+	        $mail->setBody($_POST['SettingMailForm']['_body']);
+	        
+	        $mail->Host = $model->host;
+	        $mail->Port = $model->port;
+	        $mail->Username = $model->username;
+	        $mail->Password = $model->password;
+			echo $mail->send();
+			Yii::app()->end();
+		}
+
+		if(isset($_POST['SettingMailForm'])) {
+			$model->attributes = $_POST['SettingMailForm'];
+			if($model->save())
+				Yii::app()->user->setFlash('success', '保存成功！');
+		}
+		$this->render('mail', array(
+			'model'=>$model,
+		));
+	}
 
 	/**
 	 * Displays the login page
@@ -96,35 +126,5 @@ class DefaultController extends AdminBaseController
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));
-	}
-
-	public function actionImage()
-	{
-		$file = CUploadedFile::getInstanceByName('file');
-		$filename = UploadFile::saveImage($file);
-		if($filename)
-			echo json_encode( array('filelink'=>UploadFile::getImageUrl($filename)) );
-		die;
-	}
-
-	public function actionImagelist()
-	{
-		$list_files = glob(Yii::app()->params['upload_image_path'].'*.jpg');
-		$r = array();
-		foreach ($list_files as $key => $value) {
-			$v = str_replace(Yii::app()->params['project_path'], '', $value);
-			$r[] = array('filelink'=>$v,'thumb'=>$v,'image'=>$v,'folder'=>'images');
-		}
-		echo json_encode($r);
-		die;
-	}
-
-	public function actionFile()
-	{
-		$file = CUploadedFile::getInstanceByName('file');
-		$filename = UploadFile::saveFile($file);
-		if($filename)
-			echo json_encode( array('filelink'=>UploadFile::getFileUrl($filename),'filename'=>$file->getName()) );
-		die;
 	}
 }

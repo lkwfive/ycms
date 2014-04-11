@@ -23,7 +23,11 @@ $this->breadcrumbs=array(
 			'value'=>'Article::$models[$data->model_name]',
 			'filter'=>Article::$models,
 		),
-		'title',
+		array(
+			'name'=>'title',
+			'value'=>'CHtml::link($data->title,$data->url)',
+			'type'=>'raw',
+		),
 		'subtitle',
 		
 		// 'summary',

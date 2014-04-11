@@ -48,7 +48,6 @@ return array(
 		        )
 	        )
 	    ),
-        'backup',
 	),
 
 	// application components
@@ -65,8 +64,8 @@ return array(
 			'rules'=>array(
 				//管理后台
 				'/'=>'site/index',
-				'v/<alias:\w+>' => 'site/v',
-				'/site/<action:logout>'=>'site/<action>',
+				// 'v/<alias:\w+>' => 'site/v',
+				// '/site/<action:logout>'=>'site/<action>',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
@@ -90,20 +89,8 @@ return array(
 					'class'=>'CFileLogRoute',
 					'levels'=>'error, warning',
 				),
-				// uncomment the following to show log messages on web pages
-				/*
-				array(
-					'class'=>'CWebLogRoute',
-				),
-				*/
 			),
 		),
-		'bootstrap' => array(
-			'class' => 'ext.bootstrap.components.Bootstrap',
-			'responsiveCss' => true,
-            'enableNotifierJS' => false,
-            'enableBootboxJS' => false
-  		),
         //图片
         'image' => array(
             'class'=>'ext.EPhpThumb.EPhpThumb',
@@ -139,7 +126,7 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'2703295@qq.com',
 		//上传图片大小
         'upload_image_size' => (1024 * 1024 * 1),
         //上传行程文档大小

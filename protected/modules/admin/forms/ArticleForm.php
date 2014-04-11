@@ -37,7 +37,7 @@ class ArticleForm extends CFormModel
 			array('category_id, views', 'length', 'max'=>10),
 			array('model_name, author, template', 'length', 'max'=>30),
 			array('title, subtitle, source', 'length', 'max'=>100),
-			array('title_color', 'length', 'max'=>6),
+			array('title_color', 'length', 'max'=>7),
 			array('summary, tags, alias', 'length', 'max'=>255),
 			array('picture', 'length', 'max'=>32),
 			array('content', 'ext.validator.XssClean', 'mode'=>'purify'),

@@ -29,7 +29,9 @@ class UploadFile
 	 */
 	public static function saveFile(CUploadedFile $file)
 	{
-		$file_name = md5_file($file->getTempName()).'.'.$file->getExtensionName();
+		$file_name = $file->getName();
+		$file_name = iconv(mb_detect_encoding($file_name), "gb2312", $file_name);
+		// H::printR($file_name);
 		$file_path = Yii::app()->params['upload_file_path'].$file_name;
 		if($file->saveAs($file_path)) {
 			@chmod($file_path, 0644);

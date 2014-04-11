@@ -103,7 +103,7 @@ class Article extends BaseModel
 			array('id, category_id, user_id, update_user_id,  created_at, updated_at', 'length', 'max'=>10),
 			array('model_name, author, template', 'length', 'max'=>30),
 			array('title, subtitle, source', 'length', 'max'=>100),
-			array('title_color', 'length', 'max'=>6),
+			array('title_color', 'length', 'max'=>7),
 			array('summary, tags, alias', 'length', 'max'=>255),
 			array('picture', 'length', 'max'=>32),
 			// The following rule is used by search().
@@ -132,7 +132,7 @@ class Article extends BaseModel
 		return array(
 			'id' => 'ID',
 			'alias' => '链接别名',
-			'category_id' => '分类id',
+			'category_id' => '分类',
 			'model_name' => '模型名称',
 			'title' => '标题',
 			'title_color' => '标题颜色',
@@ -221,5 +221,16 @@ class Article extends BaseModel
 	public function getImg()
 	{
 		return UploadFile::getImageUrl($this->picture);
+	}
+
+	/**
+	 * 带颜色的标题
+	 * @param  string $value [description]
+	 * @return [type]        [description]
+	 */
+	public function getCtitle()
+	{
+		$color = $this->title_color ? $this->title_color : '#000';
+		return CHtml::tag('font',array('color'=>$color), $this->title);
 	}
 }
