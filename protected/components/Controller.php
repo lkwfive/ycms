@@ -23,4 +23,20 @@ class Controller extends CController
 
 	//边栏标题
 	public $sideMenu=array();
+
+	/**
+	 * This is the action to handle external exceptions.
+	 */
+	public function actionError()
+	{
+		if($error=Yii::app()->errorHandler->error)
+		{
+			if(Yii::app()->request->isAjaxRequest)
+				echo $error['message'];
+			elseif ($error['code']===404)
+				$this->renderPartial('404', $error);
+			else
+				$this->render('error', $error);
+		}
+	}
 }
