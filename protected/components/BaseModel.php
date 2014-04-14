@@ -2,13 +2,16 @@
 class BaseModel extends CActiveRecord {
 
     public function behaviors() {
-        return array(
-            'CTimestampBehavior' => array(
-                'class' => 'zii.behaviors.CTimestampBehavior',
-                'createAttribute' => 'created_at',
-                'updateAttribute' => 'updated_at',
-            )
-        );
+        $columns = $this->tableSchema->columns;
+        if(isset($columns['created_at']) && isset($columns['updated_at']))
+            return array(
+                'CTimestampBehavior' => array(
+                    'class' => 'zii.behaviors.CTimestampBehavior',
+                    'createAttribute' => 'created_at',
+                    'updateAttribute' => 'updated_at',
+                )
+            );
+        return array();
     }
     
     
