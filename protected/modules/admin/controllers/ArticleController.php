@@ -37,7 +37,7 @@ class ArticleController extends AdminBaseController
 			$model->image_file=CUploadedFile::getInstance($model, 'image_file');
 			if($model->save()){
 				Yii::app()->user->setFlash('success', "创建成功！");
-				$this->redirect(array('admin'));
+				$this->redirect(array('index'));
 			}
 		}
 

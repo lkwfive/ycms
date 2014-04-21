@@ -5,6 +5,6 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1>修改链接<?php echo $model->title; ?></h1>
+<h1>修改链接_<?php echo $model->title; ?></h1>
 
 <?php echo $this->renderPartial('_form',array('model'=>$model)); ?>

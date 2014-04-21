@@ -5,7 +5,6 @@
  *
  * The followings are the available columns in table 'link':
  * @property string $id
- * @property string $pid
  * @property string $title
  * @property string $url
  * @property integer $target
@@ -56,13 +55,12 @@ class Link extends BaseModel
 		return array(
 			array('title, url, target, type, visible', 'required'),
 			array('target, power, visible', 'numerical', 'integerOnly'=>true),
-			array('pid', 'length', 'max'=>10),
 			array('title', 'length', 'max'=>30),
 			array('url', 'length', 'max'=>255),
 			array('type', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, pid, title, url, target, type, power, visible', 'safe', 'on'=>'search'),
+			array('id, title, url, target, type, power, visible', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -84,9 +82,8 @@ class Link extends BaseModel
 	{
 		return array(
 			'id' => 'ID',
-			'pid' => '上级链接',
 			'title' => '标题',
-			'url' => '链接地址',
+			'url' => '链接',
 			'target' => '是否新窗口打开',
 			'type' => '类型',
 			'power' => '排序',
@@ -113,7 +110,6 @@ class Link extends BaseModel
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('pid',$this->pid,true);
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('url',$this->url,true);
 		$criteria->compare('target',$this->target);

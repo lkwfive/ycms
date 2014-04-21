@@ -5,8 +5,6 @@
 
 		<?php echo $form->textFieldRow($model,'id',array('class'=>'span5','maxlength'=>10)); ?>
 
-		<?php echo $form->textFieldRow($model,'pid',array('class'=>'span5','maxlength'=>10)); ?>
-
 		<?php echo $form->textFieldRow($model,'title',array('class'=>'span5','maxlength'=>30)); ?>
 
 		<?php echo $form->textFieldRow($model,'url',array('class'=>'span5','maxlength'=>255)); ?>

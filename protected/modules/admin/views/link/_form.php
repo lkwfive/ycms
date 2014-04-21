@@ -7,8 +7,6 @@
 
 <?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'pid',array('class'=>'span5','maxlength'=>10)); ?>
-
 	<?php echo $form->textFieldRow($model,'title',array('class'=>'span5','maxlength'=>30)); ?>
 
 	<?php echo $form->textFieldRow($model,'url',array('class'=>'span5','maxlength'=>255)); ?>
@@ -25,7 +23,7 @@
 	<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',
-			'label'=>$model->isNewRecord ? 'Create' : 'Save',
+			'label'=>'保存',
 		)); ?>
 </div>
 

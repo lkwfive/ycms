@@ -3,7 +3,7 @@
 class LinkController extends AdminBaseController
 {
 	public $menu=array(
-		array('label'=>'管理', 'icon'=>'align-justify', 'url'=>array('admin')),
+		array('label'=>'管理', 'icon'=>'align-justify', 'url'=>array('index')),
 		array('label'=>'创建', 'icon'=>'plus', 'url'=>array('create')),
 	);
 
@@ -43,8 +43,10 @@ class LinkController extends AdminBaseController
 		if(isset($_POST['Link']))
 		{
 			$model->attributes=$_POST['Link'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			if($model->save()){
+				Yii::app()->user->setFlash('success', "创建成功！");
+				$this->redirect(array('index'));
+			}
 		}
 
 		$this->render('create',array(
@@ -67,8 +69,10 @@ class LinkController extends AdminBaseController
 		if(isset($_POST['Link']))
 		{
 			$model->attributes=$_POST['Link'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			if($model->save()){
+				Yii::app()->user->setFlash('success', "修改成功！");
+				$this->refresh();
+			}
 		}
 
 		$this->render('update',array(

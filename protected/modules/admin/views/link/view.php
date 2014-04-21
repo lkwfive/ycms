@@ -11,7 +11,6 @@ $this->breadcrumbs=array(
 'data'=>$model,
 'attributes'=>array(
 		'id',
-		'pid',
 		'title',
 		'url',
 		'target',

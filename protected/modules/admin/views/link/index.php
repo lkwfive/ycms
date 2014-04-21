@@ -19,8 +19,11 @@ $this->breadcrumbs=array(
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'pid',
-		'title',
+		array(
+            'name'=>'title',
+            'value'=>'CHtml::link($data->title,$data->url)',
+            'type'=>'raw',
+        ),
 		'url',
 		array(
             'class' => 'bootstrap.widgets.TbToggleColumn',
@@ -36,6 +39,7 @@ $this->breadcrumbs=array(
         array(
         	'name'=>'type',
         	'value'=>'Link::$types[$data->type]',
+            'filter'=>link::$types,
         ),
 		'power',
 		array(

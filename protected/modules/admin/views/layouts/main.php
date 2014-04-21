@@ -9,6 +9,7 @@
                 array('label'=>'系统管理', 'url'=>array('/admin/default/index')),
                 array('label'=>'文章', 'url'=>array('/admin/article/index')),
                 array('label'=>'分类', 'url'=>array('/admin/category/index')),
+                array('label'=>'链接', 'url'=>array('/admin/link/index')),
                 array('label'=>'系统',
                     'items' => array(
                       array('label' => '数据库管理', 'url' => array('/admin/backup/index')),
