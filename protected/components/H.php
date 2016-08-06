@@ -1,7 +1,7 @@
 <?php
 class H
 {
-	/**
+    /**
      * 中文截取前面部分
      *
      * @param $str
@@ -32,7 +32,7 @@ class H
             Yii::app()->end();
         }
     }
-	
+    
     /**
      * 静态js文件地址
      * @param  [type] $url [description]
@@ -103,6 +103,61 @@ class H
             $r[$k]['name'] = trim($temp[0]);
             $r[$k]['url'] = trim($temp[1]);
             isset($temp[2]) && $r[$k]['img'] = trim($temp[2]);
+        }
+        return $r;
+    }
+
+    /**
+     * 获取图片的a标签连接,图片src,及图片src属性
+     * @param  [type] $str [description]
+     * @return [type]      [description]
+     */
+    public static function getImagesAttrbutes($str){
+        $r = array();
+        preg_match_all("/<[a].*?href=[\'|\"].*?[\'|\"].*?[<\/a]>/",$str,$out);
+        foreach ($out[0] as $v) {
+            preg_match("/<[a].*?href=[\'|\"](.*?)[\'|\"]>/", $v, $links);
+            preg_match("/<[img|IMG].*?src=[\'|\"](.*?(?:[\.gif|\.jpg]))[\'|\"] .*?alt=[\'|\"](.*?)[\'|\"].*?[\/]?>/", $v, $imgs);
+            $r[$imgs[1]] = array(
+                'link' => isset($links[1]) ? $links[1] : '',
+                'img' => $imgs[1],
+                'alt' => isset($imgs[2]) ? $imgs[2] : '',
+            );
+        }
+        preg_match_all("/<[img|IMG].*?src=[\'|\"](.*?(?:[\.gif|\.jpg]))[\'|\"].*?[\/]?>/",$str,$out_img);
+        foreach ($out_img[1] as $k=>$v) {
+            if(!isset($r[$v])){
+                preg_match("/<[img|IMG].*?alt=[\'|\"](.*?)[\'|\"].*?[\/]?>/", $out_img[0][$k], $alt);
+                $r[$v] = array(
+                    'link' => '',
+                    'img' => $v,
+                    'alt' => isset($alt[1]) ? $alt[1] : '',
+                );
+            }
+        }
+        return json_encode($r);
+    }
+
+    /**
+     * 生成图片属性html内容
+     * @param  [type] $str [description]
+     * @return [type]      [description]
+     */
+    public static function gentImagesContent($str)
+    {
+        $arr = json_decode($str, true);
+        if(is_null($arr)){
+            return '';
+        }
+        
+        $r = '';
+        foreach ($arr as $v) {
+            $img = CHtml::image($v['img'], $v['alt']);
+            if($v['link']){
+                $r .= CHtml::link($img, $v['link']);
+            } else {
+                $r .= $img;
+            }
         }
         return $r;
     }
